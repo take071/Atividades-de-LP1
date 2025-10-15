@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
- 
+#include <stdlib.h>
+
  typedef struct {  
  
     char nome[50];
@@ -18,6 +19,9 @@ int main () {
     aluno teste1;
     float media;
 
+    printf("qual é a matricula do aluno?: %s ", &teste1.matricula);
+    scanf("%S", teste1.matricula);
+    getchar();
      printf("Qual é seu nome? ");
     fgets(teste1.nome, sizeof(teste1.nome), stdin);
     teste1.nome[strcspn(teste1.nome, "\n")] = 0;
@@ -36,8 +40,12 @@ int main () {
     printf("Digite a nota %d: ", i + 1);
     scanf("%f", &teste1.notas[i]);
      }
-  printf("sua matricula é: %s\n", teste1.matricula)  
- printf("nome do aluno é: %s \n", teste1.nome);
+ 
+     system("clear");
+
+ printf("======= Informações do Aluno =======\n");
+ printf("sua matricula é: %s\n", teste1.matricula);
+ printf("nome do aluno é: %d \n", teste1.nome);
  printf("idade do aluno é: %f\n", teste1.idade);
  printf("sua sala é: %d\n", teste1.sala);
  printf("nota do aluno é: %f, %f, %f\n", teste1.notas[0], teste1.notas[1], teste1.notas[2]);
