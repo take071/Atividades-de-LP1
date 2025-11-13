@@ -27,11 +27,11 @@ Filme filmes[50];
 int totalFilmes = 0;
 
 // Declaração antecipada das funções
-//void inicializarFilmes();
+void inicializarFilmes();
 void menuPrincipal();
 //void menuUsuario();
 //void menuAdmin();
-void listarFilmes();
+//void listarFilmes();
 //void avaliarFilme();
 //void adicionarFilme();
 //float calcularMedia(Filme f);
@@ -40,6 +40,7 @@ int main() {
     
     system(CLEAR);
     printf(GREEN "=== SISTEMA DE AVALIACAO DE FILMES ===\n" RESET);
+    inicializarFilmes();
     menuPrincipal();
    
     return 0;
@@ -73,7 +74,7 @@ void menuPrincipal() {
         switch(opcao) {
             case 1:
                 printf(GREEN "Bem-vindo, Usuário!\n" RESET);
-                //avaliarFilme(); // exemplo de função
+                //avaliarFilme();  função
                 break;
 
             case 2:
@@ -81,7 +82,7 @@ void menuPrincipal() {
                 break;
 
             case 3:
-               listarFilmes();
+               //listarFilmes();
                 break;
 
             case 0:
@@ -102,8 +103,86 @@ void menuPrincipal() {
     } while (opcao != 0);
 }
 
-void listarFilmes(){
+void inicializarFilmes() {
+    strcpy(filmes[0].nome, "Matrix");
+    filmes[0].nota = 4.8;
+    strcpy(filmes[0].resumo, "Um hacker descobre a verdade sobre a realidade.");
 
-printf(RED"maconha preta a revolta"RESET);
+    strcpy(filmes[1].nome, "Interestelar");
+    filmes[1].nota = 4.9;
+    strcpy(filmes[1].resumo, "Uma viagem pelo espaco e tempo em busca de um novo lar para a humanidade.");
 
+    strcpy(filmes[2].nome, "Vingadores: Ultimato");
+    filmes[2].nota = 4.7;
+    strcpy(filmes[2].resumo, "Os herois se unem para derrotar Thanos e restaurar o universo.");
+
+    strcpy(filmes[3].nome, "O Senhor dos Aneis: O Retorno do Rei");
+    filmes[3].nota = 4.9;
+    strcpy(filmes[3].resumo, "A jornada final para destruir o Um Anel e salvar a Terra Media.");
+
+    strcpy(filmes[4].nome, "Coringa");
+    filmes[4].nota = 4.6;
+    strcpy(filmes[4].resumo, "A origem sombria de um dos maiores vilões de Gotham.");
+
+    strcpy(filmes[5].nome, "Gladiador");
+    filmes[5].nota = 4.8;
+    strcpy(filmes[5].resumo, "Um general romano busca vingança como gladiador.");
+
+    strcpy(filmes[6].nome, "O Rei Leao");
+    filmes[6].nota = 4.7;
+    strcpy(filmes[6].resumo, "A historia de Simba, o herdeiro do reino animal.");
+
+    strcpy(filmes[7].nome, "Titanic");
+    filmes[7].nota = 4.5;
+    strcpy(filmes[7].resumo, "Um romance tragico em meio ao naufragio do Titanic.");
+
+    strcpy(filmes[8].nome, "A Origem");
+    filmes[8].nota = 4.8;
+    strcpy(filmes[8].resumo, "Um ladrão invade sonhos para plantar ideias no subconsciente.");
+
+    strcpy(filmes[9].nome, "Forrest Gump");
+    filmes[9].nota = 4.9;
+    strcpy(filmes[9].resumo, "A historia de um homem simples que marcou epocas.");
+
+    strcpy(filmes[10].nome, "Avatar");
+    filmes[10].nota = 4.6;
+    strcpy(filmes[10].resumo, "Um humano vive entre alienigenas no planeta Pandora.");
+
+    strcpy(filmes[11].nome, "Os Incriveis");
+    filmes[11].nota = 4.5;
+    strcpy(filmes[11].resumo, "Uma familia de super-herois tenta viver uma vida normal.");
+
+    strcpy(filmes[12].nome, "Homem-Aranha");
+    filmes[12].nota = 4.7;
+    strcpy(filmes[12].resumo, "Peter Parker ganha poderes apos ser picado por uma aranha.");
+
+    strcpy(filmes[13].nome, "Batman: O Cavaleiro das Trevas");
+    filmes[13].nota = 4.9;
+    strcpy(filmes[13].resumo, "Batman enfrenta o caos provocado pelo Coringa.");
+
+    strcpy(filmes[14].nome, "Pantera Negra");
+    filmes[14].nota = 4.6;
+    strcpy(filmes[14].resumo, "T'Challa precisa proteger o trono de Wakanda.");
+
+    strcpy(filmes[15].nome, "Duna");
+    filmes[15].nota = 4.5;
+    strcpy(filmes[15].resumo, "Um jovem enfrenta intrigas e guerras em um deserto interplanetario.");
+
+    strcpy(filmes[16].nome, "Top Gun: Maverick");
+    filmes[16].nota = 4.7;
+    strcpy(filmes[16].resumo, "Um piloto veterano treina novos recrutas em missões perigosas.");
+
+    strcpy(filmes[17].nome, "Toy Story");
+    filmes[17].nota = 4.8;
+    strcpy(filmes[17].resumo, "Brinquedos ganham vida quando os humanos nao estao por perto.");
+
+    strcpy(filmes[18].nome, "Procurando Nemo");
+    filmes[18].nota = 4.7;
+    strcpy(filmes[18].resumo, "Um peixe-palhaco cruza os oceanos para encontrar seu filho.");
+
+    strcpy(filmes[19].nome, "Wall-E");
+    filmes[19].nota = 4.8;
+    strcpy(filmes[19].resumo, "Um robo solitario descobre o amor e salva a humanidade.");
+
+    totalFilmes = 20;
 }
