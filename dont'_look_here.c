@@ -36,6 +36,7 @@ void menuPrincipal();
 //void adicionarFilme();
 //float calcularMedia(Filme f);
 
+
 int main() {
     
     system(CLEAR);
