@@ -29,17 +29,16 @@ int totalFilmes = 0;
 // Declaração antecipada das funções
 void inicializarFilmes();
 void menuPrincipal();
-//void menuUsuario();
-//void menuAdmin();
-//void listarFilmes();
-//void avaliarFilme();
-//void adicionarFilme();
+void menuUsuario();
+ void menuAdmin();
+ void listarFilmes();
+ void avaliarFilme();
+ void adicionarFilme();
 //float calcularMedia(Filme f);
-
+void removerFilme();
 
 int main() {
     
-    system(CLEAR);
     printf(GREEN "=== SISTEMA DE AVALIACAO DE FILMES ===\n" RESET);
     inicializarFilmes();
     menuPrincipal();
@@ -75,15 +74,15 @@ void menuPrincipal() {
         switch(opcao) {
             case 1:
                 printf(GREEN "Bem-vindo, Usuário!\n" RESET);
-                //avaliarFilme();  função
+                menuUsuario(); 
                 break;
 
             case 2:
-                //menuAdmin();
+                menuAdmin();
                 break;
 
             case 3:
-               //listarFilmes();
+               listarFilmes();
                 break;
 
             case 0:
@@ -102,6 +101,196 @@ void menuPrincipal() {
         }
 
     } while (opcao != 0);
+}
+
+void menuUsuario() {
+    int opcao;
+
+    do {
+        system(CLEAR);
+
+        printf(CYAN "=== MENU DO USUÁRIO ===\n" RESET);
+        printf("1 - Listar filmes\n");
+        printf("2 - Avaliar um filme\n");
+        printf("0 - Voltar ao menu principal\n");
+        printf("\nEscolha: ");
+
+        scanf("%d", &opcao);
+        getchar(); // limpar ENTER
+
+        system(CLEAR);
+
+        switch(opcao) {
+            case 1:
+                listarFilmes();
+                break;
+
+            case 2:
+                avaliarFilme();
+                break;
+
+            case 0:
+                printf(YELLOW "Voltando ao menu principal...\n" RESET);
+                break;
+
+            default:
+                printf(RED "Opção inválida!\n" RESET);
+        }
+
+        if (opcao != 0) {
+            printf("\nPressione ENTER para continuar...");
+            getchar();
+        }
+
+    } while(opcao != 0);
+}
+void avaliarFilme() {
+    if (totalFilmes == 0) {
+        printf(RED "Nenhum filme cadastrado para avaliar!\n" RESET);
+        return;
+    }
+
+    listarFilmes();
+
+    int id;
+    printf("\nDigite o número do filme que deseja avaliar: ");
+    scanf("%d", &id);
+    getchar(); // limpar ENTER
+
+    if (id < 1 || id > totalFilmes) {
+        printf(RED "ID inválido!\n" RESET);
+        return;
+    }
+
+    id--; // converter para índice
+
+    float novaNota;
+    printf("Digite sua nota para '%s' (0 a 5): ", filmes[id].nome);
+    scanf("%f", &novaNota);
+    getchar();
+
+    if (novaNota < 0 || novaNota > 5) {
+        printf(RED "Nota inválida! A nota deve estar entre 0 e 5.\n" RESET);
+        return;
+    }
+
+    // Atualiza a média de forma simples (substitui a nota antiga)
+    filmes[id].nota = novaNota;
+
+    printf(GREEN "\nAvaliação registrada com sucesso!\n" RESET);
+}
+
+void menuAdmin() {
+    char login[20], senha[20];
+
+    printf(BLUE "=== LOGIN DO ADMIN ===\n" RESET);
+
+    printf("Usuário: ");
+    fgets(login, sizeof(login), stdin);
+
+    printf("Senha: ");
+    fgets(senha, sizeof(senha), stdin);
+
+    if (strcmp(login, "admin\n") == 0 && strcmp(senha, "1234\n") == 0) {
+        int opcao;
+        do {
+            system(CLEAR);
+            printf(GREEN "=== MENU ADMINISTRADOR ===\n" RESET);
+            printf("1 - Adicionar filme\n");
+            printf("2 - Listar filmes\n");
+            printf("3 - Remover filme\n");
+            printf("0 - Sair\n");
+            printf("Escolha: ");
+
+            scanf("%d", &opcao);
+            getchar();
+
+            switch (opcao) {
+                case 1:
+                    adicionarFilme();
+                    break;
+                case 2:
+                    listarFilmes();
+                    break;
+                case 3:
+                    removerFilme();
+                    break;
+                case 0:
+                    printf(YELLOW "Saindo do menu admin...\n" RESET);
+                    break;
+                default:
+
+                printf(RED "Opção inválida!\n" RESET);
+            }
+
+            if (opcao != 0) {
+                printf("\nPressione ENTER para continuar...");
+                getchar();
+            }
+
+        } while (opcao != 0);
+
+    } else {
+        printf(RED "Acesso negado!\n" RESET);
+    }
+}
+
+void adicionarFilme() {
+    if (totalFilmes >= 50) {
+        printf(RED "Limite máximo de filmes atingido!\n" RESET);
+        return;
+    }
+
+    printf(BLUE "=== Adicionar Filme ===\n" RESET);
+
+    printf("Nome do filme: ");
+    fgets(filmes[totalFilmes].nome, sizeof(filmes[totalFilmes].nome), stdin);
+
+    printf("Resumo: ");
+    fgets(filmes[totalFilmes].resumo, sizeof(filmes[totalFilmes].resumo), stdin);
+
+    printf("Nota inicial do filme: ");
+    scanf("%f", &filmes[totalFilmes].nota);
+    getchar();
+
+    totalFilmes++;
+
+    printf(GREEN "Filme cadastrado com sucesso!\n" RESET);
+}
+void removerFilme() {
+    listarFilmes();
+
+    int id;
+    printf("\nDigite o número do filme que deseja remover: ");
+    scanf("%d", &id);
+    getchar();
+
+    if (id < 1 || id > totalFilmes) {
+        printf(RED "ID inválido!\n" RESET);
+        return;
+    }
+
+    id--; // convertendo para índice do array
+
+    // desloca os filmes para a esquerda
+    for (int i = id; i < totalFilmes - 1; i++) {
+        filmes[i] = filmes[i + 1];
+    }
+
+    totalFilmes--;
+
+    printf(GREEN "Filme removido com sucesso!\n" RESET);
+}
+
+void listarFilmes() {
+    printf(BLUE "=== Lista de Filmes (%d cadastrados) ===\n" RESET, totalFilmes);
+
+    for (int i = 0; i < totalFilmes; i++) {
+        printf(YELLOW "\nFilme %d:\n" RESET, i + 1);
+        printf("Nome: %s", filmes[i].nome);
+        printf("Nota: %.1f\n", filmes[i].nota);
+        printf("Resumo: %s\n", filmes[i].resumo);
+    }
 }
 
 void inicializarFilmes() {
