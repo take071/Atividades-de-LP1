@@ -4,6 +4,7 @@
 int main(){
    
    int x,d,c;
+   char op;
    int *p = &x;
  do{
   printf("PONTEIROS  EM 'C'");
@@ -51,10 +52,14 @@ break;
   printf("o endereço de 'x' é: %d\n",&x);
   break;
   default:
-   printf(" escolha a opção certa\n");
+   printf(" escolha a opção 1 ou 2\n");
    getchar(); system("clear");
  break;
 } 
-} while(d !=1 && d != 2);
+  printf("deseja esolher outra opção?(s/n)\n");
+  scanf("%c",&op);getchar();system("clear");
+} while(op == 's' || op == 'S');
+
+printf("cabou fih, tmj. Deusabençoe\n");
    return 0;
 }
