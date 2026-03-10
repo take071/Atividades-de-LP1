@@ -47,7 +47,7 @@ break;
   int *p = &c;
 
   printf("o valor dentro do ponteiro é %d\n",*p);
-  printf("o v*p = *p + c;alor de 'x' é: %d\n",x);
+  printf("o valor de 'x' é: %d\n",x);
   printf("o endereço de 'x' é: %d\n",&x);
   break;
   default:
